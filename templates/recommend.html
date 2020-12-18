@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+    table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 5px;
+    }
+    th {
+      text-align: left;
+    }
+    </style>
+<style>
+main {
+  display: flex;
+  justify-content: center;
+}
+
+table {
+  max-width: 100%;
+}
+
+tr:nth-child(odd) {
+  background-color: #eee;
+}
+
+th {
+  background-color: #555;
+  color: #fff;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 0.5em 1em;
+}
+
+td::before {
+  display: none;
+}
+
+@media screen and (max-width: 680px) {
+ table {
+   border: 0;
+   display: block;
+   box-shadow: none;
+ }
+
+ thead {
+   position: absolute;
+   opacity: 0;
+ }
+  
+ tbody {
+   display: block;
+   min-width: 19em;
+   max-width: 25em;
+ }
+
+ tr {
+   border-top: 2px solid #3c3c3b;
+   border-bottom: 2px solid #3c3c3b;
+   display: block;
+   margin-bottom: 1em;
+ }
+
+ td {
+   border-bottom: 1px solid #3c3c3b;
+   display: flex;
+ }
+
+ td::before {
+   display: inline-block;
+   font-weight: bold;
+   margin-right: auto;
+   padding-right: 1em;
+ }
+
+ td:last-child {
+   border-bottom: 0;
+ }
+}
+</style>
+
+</head>
+
+<body>
+<center><h3> Suggestions based on movie </h3></center>
+<center><h3> {{title|capitalize}} </h3></center>
+<center>
+ <table id="respTable">
+  <thead>
+    <tr>
+      <th>Movie</th>
+      <th>CAST</th>
+      <th>DIRETOR</th>
+      <th>TMDB-Rating</th>
+      <th>SITE</th>
+       
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        {% for x in m %}
+           {{x|capitalize }}  <br><br>
+        {% endfor %}
+      </td>
+      <td>
+        {% for x in a %}
+           {{x}}  <br><br>
+        {% endfor %}
+      </td>
+      <td>
+        {% for x in d %}
+           {{x|capitalize }}  <br><br>
+        {% endfor %}
+      </td>
+      <td>
+        {% for x in range(11) %}
+           {{r[x]}}  <br><br>
+        {% endfor %}
+      </td>
+       
+      <td>
+        {% for x in s %}
+           <a href="{{x}}" target="_blank">{{x}}</a> <br><br>
+        {% endfor %}
+      </td> 
+       
+    </tr>
+  <tbody>
+</table>
+</center>
+<center><a href = "/" color='blue' ><b>Home</b></a></center><br>
+<script>
+function cellHeaders(tableId) {
+  try {
+    let thArray = [];
+    const table = document.getElementById(tableId);
+    const headers = table.getElementsByTagName('th');
+    for (let i = 0; i < headers.length; i++) {
+      const headingText = headers[i].innerHTML;
+      thArray.push(headingText);
+    }
+    const styleElm = document.createElement('style');
+    let styleSheet;
+    document.head.appendChild(styleElm);
+    styleSheet = styleElm.sheet;
+    for (let i = 0; i < thArray.length; i++) {
+      styleSheet.insertRule(
+        '#' +
+          tableId +
+          ' td:nth-child(' +
+          (i + 1) +
+          ')::before {content:"' +
+          thArray[i] +
+          ': ";}',
+        styleSheet.cssRules.length
+      );
+    }
+  } catch (err) {
+    console.log('cellHeaders(): ' + err);
+  }
+}
+cellHeaders('respTable');
+</script>
+
+</body>
+</html>

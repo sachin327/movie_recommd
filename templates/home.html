@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@7.2.0/dist/css/autoComplete.min.css">
+
+
+</head>
+<body>
+
+<div >
+ <center> <h1 style="background-color:OrangeRed;"> HOLLYWOOD MOVIES RECOMMENDATION SYSTEM</h1></center>
+</div>
+
+<center>
+<div class="card" style="width: 60rem;">
+    <img class="card-img-top" src="static/img/pic3.jpg" alt="Card image cap">
+    <div class="card-body">
+    <form action="{{url_for('recommend')}}">
+        <center><input type="text" name="title" class="movie form-control" id="autoComplete" autocomplete="on"placeholder="Enter the Movie Name" style="background-color: #ffffff;border-color:#ed4040;width: 50%;color: #181818" required="required" /></center>
+    <br>
+    <center><input type="submit" class="btn btn-outline-info"  value="Enter"></center>
+    </form>
+    </div>
+</center>
+</div>
+</body>
+</html>
